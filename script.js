@@ -3,21 +3,21 @@ function testString() {
     const patternString = document.getElementById('input_pattern').value;
     try {
         validatePattern(patternString);
-        hideErrorMessage();
+        hideErrMessage(patternString);
         // TODO create regex pattern from string 
-        const pattern = new RegExp(patternString, 'g');
+        const pattern = createRegExPattern(patternString);
 
         // was a match found?
         let matchFoundElement = document.getElementById('match_found');
         const matchFound = pattern.test(stringToTestAgainst);
         matchFoundElement.innerHTML = matchFound;
 
-        // extract the maches found
+        // extract the matches found
         const matchesExtracted = stringToTestAgainst.match(pattern);
         let listOfMatchesElement = document.getElementById('list_of_matches');
         listOfMatchesElement.innerHTML = JSON.stringify(matchesExtracted);
     } catch (error) {
-        showErrorMessage(error);
+        showErrMessage(error);
     }
 
 }
@@ -31,11 +31,11 @@ const validatePattern = (patternString) => {
     }
 }
 
-function showErrorMessage(errMsg) {
+function showErrMessage(errMsg) {
     toggleErrElement(errMsg);
 }
 
-function hideErrorMessage(){
+function hideErrMessage(){
     toggleErrElement();
 }
 
@@ -43,4 +43,14 @@ function toggleErrElement(errMsg){
     const errorMsgElement = document.getElementById('error_msg');
     errorMsgElement.innerHTML = errMsg || '';
     errorMsgElement.style.display = errMsg ? 'block' : 'none';
+    errorMsgElement.style.color = 'red';
+}
+
+function createRegExPattern(patternString) {
+    const patternRegEx = /\/.*\//;
+    const pattern = patternString.match(patternRegEx);
+
+    const patternModifier = /[igm]*$/;
+    const modifier = patternString.match(patternModifier);
+    return new RegExp(pattern[0].replace(/\//g, ''), modifier[0]);
 }
