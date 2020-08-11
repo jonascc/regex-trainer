@@ -4,25 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Regex Tester</title>
 </head>
 
 <body>
     <h1>Regex Tester</h1>
     <form action="">
-        <label for="string">String:</label><br />
-        <textarea type="text" name="string" id="input_string" maxlength="500" cols="50" rows="10"></textarea><br />
-        <label for="pattern">Pattern</label><br /> 
+        <label class="label" for="string">String:</label><br />
+        <div id="string_divs">
+            <textarea type="text" name="string" id="input_string" maxlength="500" cols="50" rows="10"></textarea>
+            <div id="text_highlighted"></div>
+        </div>
+
+        <label class="label" for="pattern">Pattern</label><br />
         <input type="text" name="pattern" id="input_pattern" size="100" maxlength="100"><br />
         <div>
-            <span>Match found: </span>
+            <span class="label">Match found: </span>
             <span id="match_found"></span><br />
-            <span>List of matches: </span>
+            <span class="label">List of matches: </span>
             <span id="list_of_matches"></span><br />
             <button type="button" onclick="testString()">Test</button>
         </div>
     </form>
-    <div id="error_msg"></div></div>
+    <div id="error_msg"></div>
+    </div>
 
     <script src="script.js"></script>
 </body>

@@ -1,6 +1,8 @@
 function testString() {
     const stringToTestAgainst = document.getElementById('input_string').value;
     const patternString = document.getElementById('input_pattern').value;
+    const stringHighlighted = document.getElementById('text_highlighted');
+    stringHighlighted.innerHTML = stringToTestAgainst;
     try {
         validatePattern(patternString);
         hideErrMessage(patternString);
@@ -16,10 +18,12 @@ function testString() {
         const matchesExtracted = stringToTestAgainst.match(pattern);
         let listOfMatchesElement = document.getElementById('list_of_matches');
         listOfMatchesElement.innerHTML = JSON.stringify(matchesExtracted);
+
+        const textHighlighted = document.getElementById('text_highlighted');
+        textHighlighted.innerHTML = textHighlighted.innerHTML.replace(pattern, '<span class="highlighting">$&</span>')
     } catch (error) {
         showErrMessage(error);
     }
-
 }
 
 const validatePattern = (patternString) => {
@@ -27,7 +31,7 @@ const validatePattern = (patternString) => {
     const validPattern = /^\/.*\/$|^\/.*\/(i{0,1}g{0,1}m{0,1})$/;
     const isValidPattern = validPattern.test(patternString)
     if (!isValidPattern) {
-        throw 'Invalid pattern';
+        throw 'Invalid pattern.';
     }
 }
 
@@ -35,15 +39,14 @@ function showErrMessage(errMsg) {
     toggleErrElement(errMsg);
 }
 
-function hideErrMessage(){
+function hideErrMessage() {
     toggleErrElement();
 }
 
-function toggleErrElement(errMsg){
+function toggleErrElement(errMsg) {
     const errorMsgElement = document.getElementById('error_msg');
     errorMsgElement.innerHTML = errMsg || '';
     errorMsgElement.style.display = errMsg ? 'block' : 'none';
-    errorMsgElement.style.color = 'red';
 }
 
 function createRegExPattern(patternString) {

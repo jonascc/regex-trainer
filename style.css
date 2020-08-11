@@ -1,0 +1,41 @@
+.label{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+input[type="text"]{
+    font-size: 18px;
+}
+
+textarea, #match_found, #list_of_matches{
+    font-size: 18px;
+}
+
+textarea{
+    resize: none;
+    width: 50%;
+    float: left;
+    margin-right: 10px;
+}
+
+#string_divs{
+    width: 100%;
+    overflow: hidden;
+}
+
+#string_divs div{
+    width: 500px;
+    display: inline-block;
+    word-wrap: break-word;
+    font-size: 22px;
+}
+
+#error_msg{
+    font-size: 18px;
+    color: red;
+    display: none;
+}
+
+span.highlighting{
+    background-color: LightGrey;
+}
