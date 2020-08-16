@@ -28,7 +28,7 @@ function testString() {
 
 const validatePattern = (patternString) => {
     // verify if pattern has the format: /pattern/modifiers. Ex.: /\d+/gi
-    const validPattern = /^\/.*\/$|^\/.*\/(i{0,1}g{0,1}m{0,1})$/;
+    const validPattern = /^\/.*\/$|^\/.*\/((g?i?m?)|(i?g?m?)|(m?g?i?)|(g?m?i?)|(i?m?g?)|(m?i?g?))$/;
     const isValidPattern = validPattern.test(patternString)
     if (!isValidPattern) {
         throw 'Invalid pattern.';
